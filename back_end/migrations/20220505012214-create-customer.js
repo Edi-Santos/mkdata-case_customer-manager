@@ -18,14 +18,15 @@ module.exports = {
       },
       'CPF/CNPJ': {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
       RG: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
       data_cadastro: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW,
       },
       grupo: {
         type: Sequelize.STRING,
