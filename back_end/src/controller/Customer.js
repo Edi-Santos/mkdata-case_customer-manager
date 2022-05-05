@@ -22,7 +22,20 @@ const getAllCustomers = async (_req, res) => {
   }
 };
 
+const getCustomerByName = async (req, res) => {
+  const { nome } = req.query;
+
+  try {
+    const getingCustomer = await Customer.getCustomerByName(nome);
+
+    return res.status(200).json({ customer: getingCustomer });
+  } catch (error) {
+    console.log(`Erro no Model || ${error}`);
+  }
+};
+
 module.exports = {
   createCustomer,
   getAllCustomers,
+  getCustomerByName,
 };

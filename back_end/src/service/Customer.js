@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const { Customer } = require('../../models');
 
 const createCustomer = async (customerDatas) => {
@@ -20,7 +21,24 @@ const getAllCustomers = async () => {
   }
 };
 
+const getCustomerByName = async (nome) => {
+  const search = `%${nome}%`;
+
+  try {
+    const getingCustomer = await Customer.findAll({ where: {
+      nome: {
+        [Op.like]: search,
+      },
+    } });
+
+    return getingCustomer;
+  } catch (error) {
+    console.log(`Erro no Service || ${error}`);
+  }
+};
+
 module.exports = {
   createCustomer,
   getAllCustomers,
+  getCustomerByName,
 };

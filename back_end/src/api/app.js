@@ -9,5 +9,6 @@ const Customer = require('../controller/Customer');
 
 app.post('/customer', Customer.createCustomer);
 app.get('/customer', Customer.getAllCustomers);
+app.get('/customer/search', Customer.getCustomerByName);
 
 module.exports = app;
