@@ -17,5 +17,10 @@
     "joi": "^17.6.0",
     "mysql2": "^2.3.3",
     "sequelize": "^6.19.0"
+  },
+  "devDependencies": {
+    "eslint-config-trybe-backend": "^1.0.4",
+    "nodemon": "^2.0.16",
+    "sequelize-cli": "^6.4.1"
   }
 }
