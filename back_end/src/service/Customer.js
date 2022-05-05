@@ -10,6 +10,17 @@ const createCustomer = async (customerDatas) => {
   }
 };
 
+const getAllCustomers = async () => {
+  try {
+    const getingCustomers = await Customer.findAll();
+
+    return getingCustomers;
+  } catch (error) {
+    console.log(`Erro no Service || ${error}`);
+  }
+};
+
 module.exports = {
   createCustomer,
+  getAllCustomers,
 };

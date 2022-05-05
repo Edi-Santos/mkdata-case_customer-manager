@@ -8,5 +8,6 @@ app.use(cors());
 const Customer = require('../controller/Customer');
 
 app.post('/customer', Customer.createCustomer);
+app.get('/customer', Customer.getAllCustomers);
 
 module.exports = app;
