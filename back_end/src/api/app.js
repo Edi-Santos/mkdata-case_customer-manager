@@ -11,5 +11,6 @@ app.post('/customer', Customer.createCustomer);
 app.get('/customer', Customer.getAllCustomers);
 app.get('/customer/search', Customer.getCustomerByName);
 app.put('/customer/:id', Customer.updateCustomer);
+app.put('/customer/delete/:id', Customer.softDeleteCustomer);
 
 module.exports = app;

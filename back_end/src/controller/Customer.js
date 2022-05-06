@@ -49,9 +49,23 @@ const updateCustomer = async (req, res) => {
   }
 };
 
+const softDeleteCustomer = async (req, res) => {
+  const { id } = req.params;
+  const { ativo } = req.body;
+
+  try {
+    await Customer.softDeleteCustomer(id, ativo);
+
+    return res.status(204).end();
+  } catch (error) {
+    console.log(`Erro no Controller || ${error}`);
+  }
+};
+
 module.exports = {
   createCustomer,
   getAllCustomers,
   getCustomerByName,
   updateCustomer,
+  softDeleteCustomer,
 };

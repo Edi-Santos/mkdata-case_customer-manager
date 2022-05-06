@@ -52,9 +52,21 @@ const updateCustomer = async (id, customerDatas) => {
   }
 };
 
+const softDeleteCustomer = async (id, ativo) => {
+  try {
+    await Customer.update(
+      { ativo },
+      { where: { id } },
+    );
+  } catch (error) {
+    console.log(`Erro no Service || ${error}`);
+  }
+};
+
 module.exports = {
   createCustomer,
   getAllCustomers,
   getCustomerByName,
   updateCustomer,
+  softDeleteCustomer,
 };
