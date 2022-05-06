@@ -34,6 +34,12 @@ const getCustomerByName = async (req, res) => {
   try {
     const getingCustomer = await Customer.getCustomerByName(nome);
 
+    if (getingCustomer.message) {
+      const { status, message } = getingCustomer;
+
+      return res.status(status).json({ message });
+    }
+
     return res.status(200).json({ customer: getingCustomer });
   } catch (error) {
     console.log(`Erro no Controller || ${error}`);

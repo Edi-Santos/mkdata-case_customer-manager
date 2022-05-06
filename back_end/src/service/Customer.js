@@ -2,6 +2,7 @@ const { Op } = require('sequelize');
 const { Customer } = require('../../models');
 
 const customerDatasValidations = require('../validations/custermerDatasValidations');
+const customerNotFound = require('../validations/customerNotFound');
 
 const createCustomer = async (customerDatas) => {
   try {
@@ -36,6 +37,10 @@ const getCustomerByName = async (nome) => {
         [Op.like]: search,
       },
     } });
+
+    const validatingSearch = customerNotFound(getingCustomer);
+
+    if (validatingSearch !== true) return validatingSearch;
 
     return getingCustomer;
   } catch (error) {
