@@ -37,8 +37,24 @@ const getCustomerByName = async (nome) => {
   }
 };
 
+const updateCustomer = async (id, customerDatas) => {
+  // eslint-disable-next-line camelcase
+  const { nome, tipo, 'CPF/CNPJ': cpf_cnpj, RG, grupo } = customerDatas;
+
+  try {
+    await Customer.update(
+      // eslint-disable-next-line camelcase
+      { nome, tipo, cpf_cnpj, RG, grupo },
+      { where: { id } },
+    );
+  } catch (error) {
+    console.log(`Erro no Service || ${error}`);
+  }
+};
+
 module.exports = {
   createCustomer,
   getAllCustomers,
   getCustomerByName,
+  updateCustomer,
 };

@@ -34,8 +34,24 @@ const getCustomerByName = async (req, res) => {
   }
 };
 
+const updateCustomer = async (req, res) => {
+  const { id } = req.params;
+  // eslint-disable-next-line camelcase
+  const { nome, tipo, 'CPF/CNPJ': cpf_cnpj, RG, grupo } = req.body;
+
+  try {
+    // eslint-disable-next-line camelcase
+    await Customer.updateCustomer(id, { nome, tipo, cpf_cnpj, RG, grupo });
+
+    return res.status(204).end();
+  } catch (error) {
+    console.log(`Erro no Model || ${error}`);
+  }
+};
+
 module.exports = {
   createCustomer,
   getAllCustomers,
   getCustomerByName,
+  updateCustomer,
 };
