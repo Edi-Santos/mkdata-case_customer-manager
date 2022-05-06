@@ -70,7 +70,13 @@ const softDeleteCustomer = async (req, res) => {
   const { ativo } = req.body;
 
   try {
-    await Customer.softDeleteCustomer(id, ativo);
+    const deletingCustomer = await Customer.softDeleteCustomer(id, ativo);
+
+    if (deletingCustomer.message) {
+      const { status, message } = deletingCustomer;
+
+      return res.status(status).json({ message });
+    }
 
     return res.status(204).end();
   } catch (error) {

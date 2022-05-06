@@ -71,10 +71,18 @@ const updateCustomer = async (id, customerDatas) => {
 
 const softDeleteCustomer = async (id, ativo) => {
   try {
-    await Customer.update(
+    const deletingCustomer = await Customer.update(
       { ativo },
       { where: { id } },
     );
+
+    console.log(deletingCustomer);
+
+    const validatingSearch = customerNotFound(deletingCustomer);
+
+    if (validatingSearch !== true) return validatingSearch;
+
+    return true;
   } catch (error) {
     console.log(`Erro no Service || ${error}`);
   }
