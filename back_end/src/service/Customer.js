@@ -54,10 +54,14 @@ const updateCustomer = async (id, customerDatas) => {
 
     if (validatingDatas !== true) return validatingDatas;
 
-    await Customer.update(
+    const [customer] = await Customer.update(
       { ...customerDatas },
       { where: { id } },
     );
+
+    const validatingSearch = customerNotFound(customer);
+
+    if (validatingSearch !== true) return validatingSearch;
 
     return true;
   } catch (error) {
