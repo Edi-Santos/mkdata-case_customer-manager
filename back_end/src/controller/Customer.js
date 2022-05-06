@@ -30,7 +30,7 @@ const getCustomerByName = async (req, res) => {
 
     return res.status(200).json({ customer: getingCustomer });
   } catch (error) {
-    console.log(`Erro no Model || ${error}`);
+    console.log(`Erro no Controller || ${error}`);
   }
 };
 
@@ -45,7 +45,7 @@ const updateCustomer = async (req, res) => {
 
     return res.status(204).end();
   } catch (error) {
-    console.log(`Erro no Model || ${error}`);
+    console.log(`Erro no Controller || ${error}`);
   }
 };
 
