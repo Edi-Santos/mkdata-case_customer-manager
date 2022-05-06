@@ -1,7 +1,7 @@
 const { Op } = require('sequelize');
 const { Customer } = require('../../models');
 
-const customerDatasValidations = require('../validations/validations');
+const customerDatasValidations = require('../validations/custermerDatasValidations');
 
 const createCustomer = async (customerDatas) => {
   try {
