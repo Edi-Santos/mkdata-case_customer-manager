@@ -42,12 +42,16 @@ const getCustomerByName = async (req, res) => {
 
 const updateCustomer = async (req, res) => {
   const { id } = req.params;
-  // eslint-disable-next-line camelcase
-  const { nome, tipo, 'CPF/CNPJ': cpf_cnpj, RG, grupo } = req.body;
+  const customerDatas = req.body;
 
   try {
-    // eslint-disable-next-line camelcase
-    await Customer.updateCustomer(id, { nome, tipo, cpf_cnpj, RG, grupo });
+    const updatingCustomer = await Customer.updateCustomer(id, customerDatas);
+
+    if (updatingCustomer.message) {
+      const { status, message } = updatingCustomer;
+
+      return res.status(status).json({ message });
+    }
 
     return res.status(204).end();
   } catch (error) {

@@ -44,15 +44,17 @@ const getCustomerByName = async (nome) => {
 };
 
 const updateCustomer = async (id, customerDatas) => {
-  // eslint-disable-next-line camelcase
-  const { nome, tipo, 'CPF/CNPJ': cpf_cnpj, RG, grupo } = customerDatas;
-
   try {
+    const validatingDatas = customerDatasValidations(customerDatas);
+
+    if (validatingDatas !== true) return validatingDatas;
+
     await Customer.update(
-      // eslint-disable-next-line camelcase
-      { nome, tipo, cpf_cnpj, RG, grupo },
+      { ...customerDatas },
       { where: { id } },
     );
+
+    return true;
   } catch (error) {
     console.log(`Erro no Service || ${error}`);
   }
