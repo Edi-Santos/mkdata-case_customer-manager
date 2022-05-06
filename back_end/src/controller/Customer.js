@@ -5,6 +5,12 @@ const createCustomer = async (req, res) => {
 
   try {
     const creatingCustomer = await Customer.createCustomer(customerDatas);
+
+    if (creatingCustomer.message) {
+      const { status, message } = creatingCustomer;
+
+      return res.status(status).json({ message });
+    }
   
     return res.status(201).json({ newCustomer: creatingCustomer });
   } catch (error) {

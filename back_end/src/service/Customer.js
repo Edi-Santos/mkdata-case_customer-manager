@@ -1,8 +1,14 @@
 const { Op } = require('sequelize');
 const { Customer } = require('../../models');
 
+const customerDatasValidations = require('../validations/validations');
+
 const createCustomer = async (customerDatas) => {
   try {
+    const validatingDatas = customerDatasValidations(customerDatas);
+
+    if (validatingDatas !== true) return validatingDatas;
+
     const creatingCustomer = await Customer.create(customerDatas);
 
     return creatingCustomer;
