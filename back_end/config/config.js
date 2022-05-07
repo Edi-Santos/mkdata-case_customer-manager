@@ -4,7 +4,7 @@ module.exports = {
   development: {
     username: process.env.MYSQL_USER,
     password: process.env.MYSQL_PASSWORD,
-    database: 'PSC_MKDATA_customer_manager',
+    database: process.env.MYSQL_DATABASE,
     host: process.env.HOSTNAME,
     dialect: 'mysql',
   },
