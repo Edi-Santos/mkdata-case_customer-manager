@@ -22,7 +22,7 @@ const getAllCustomers = async (_req, res) => {
   try {
     const getingCustomers = await Customer.getAllCustomers();
 
-    return res.status(200).json({ custmers: getingCustomers });
+    return res.status(200).json({ customers: getingCustomers });
   } catch (error) {
     console.log(`Erro no Controller || ${error}`);
   }
